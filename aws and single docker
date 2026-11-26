@@ -1,0 +1,87 @@
+# Install Docker, Git and Nano
+sudo apt update
+sudo apt-get install docker.io
+sudo apt install git
+sudo apt install nano
+
+# Clone GitHub repository
+git clone <repository-url>
+
+# Build and run web application
+sudo docker build -t mywebapp .
+sudo docker run -p 8081:8080 mywebapp
+
+# Pull Redis image
+docker pull redis
+
+# Create and run Redis container
+docker run --name my-redis -d redis
+docker ps
+
+# Access Redis CLI
+docker exec -it my-redis redis-cli
+SET name "Alice"
+GET name
+exit
+
+# Stop, start and remove Redis container
+docker stop my-redis
+docker start my-redis
+docker stop my-redis
+docker rm my-redis
+docker rmi redis
+
+# Create Dockerfile project
+mkdir Redis
+cd Redis
+nano Dockerfile
+
+# Dockerfile content:
+# FROM redis:latest
+# CMD ["redis-server"]
+
+# Build and run Dockerfile image
+docker build -t redisnew .
+docker run --name myredisnew -d redisnew
+docker ps
+docker stop myredisnew
+
+# Login to Docker Hub
+docker login
+
+# Check all containers
+docker ps -a
+
+# Commit container as image
+docker commit <container_id> username/redis1
+
+# Check images
+docker images
+
+# Push image to Docker Hub
+docker push username/redis1
+
+# Remove container and image
+docker rm <container_id>
+docker rmi redisnew
+docker logout
+
+# Pull image from Docker Hub
+docker pull username/redis1
+
+# Run pulled image
+docker run --name myredis -d username/redis1
+
+# Access Redis CLI
+docker exec -it myredis redis-cli
+SET name "Abcdef"
+GET name
+exit
+
+# Stop and remove container
+docker stop myredis
+docker rm myredis
+
+# Remove Docker image
+docker images
+docker rmi username/redis1
