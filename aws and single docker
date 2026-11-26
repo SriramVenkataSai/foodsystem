@@ -85,3 +85,9 @@ docker rm myredis
 # Remove Docker image
 docker images
 docker rmi username/redis1
+ 
+#to run web in sinle
+docker build -t food-system .
+docker run -d -p 8081:8080 --name foodapp food-system
+
+
